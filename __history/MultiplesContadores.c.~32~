@@ -1,0 +1,68 @@
+#include <18F4620.h>
+#fuses XT, NOMCLR
+#USE DELAY (clock=16000000)
+
+int16 AUX=0;
+int16 conteo;
+int16 contador200=0;
+int16 contador400=0;
+int16 contador700=0;
+#int_timer0
+void timer_0()
+{
+AUX++;
+output_toggle(pin_e0);
+if(AUX==5000){
+    //contador 200ms
+    for(conteo=32;conteo>=1;conteo/=2)
+        {
+            output_a(conteo);
+            contador200++;
+            //delay_ms(200);
+        }
+        AUX=0;
+    }
+    
+    set_timer0(56);
+}
+void main(void) {
+    setup_timer_0(RTCC_INTERNAL | RTCC_DIV_2);
+    set_timer0(56);
+    enable_interrupts(int_timer0);
+    enable_interrupts(global);
+
+    output_a(0x00);
+    output_b(0x00);
+    output_c(0x00);
+    output_d(0x00);
+    output_d(0x00);
+    while (TRUE) {
+    //contador 2 (400ms)
+    if(contador200>=2500)
+    {
+      for(conteo=32;conteo>=1;conteo/=2)
+        {
+            output_b(conteo);
+            contador400++;
+            //delay_ms(400);
+        }
+    }
+      //contador 3  (700ms)
+      if(contador400>=1420){
+       for(conteo=32;conteo>=1;conteo/=2)
+        {
+            output_d(conteo);
+            contador700++;
+           //delay_ms(700);
+        }
+      }
+       //contador 4(1000ms)
+       if(contador700>=1000){
+        for(conteo=32;conteo>=1;conteo/=2)
+        {
+            output_c(conteo);
+            //delay_ms(1000);
+        }
+       }
+    }
+}

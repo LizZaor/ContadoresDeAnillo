@@ -1,0 +1,72 @@
+#include <18F4620.h>
+#include <stdio.h>
+#include <stdlib.h>
+#device ADC=10
+#fuses HS, NOFCMEN, NOIESO, PUT, NOBROWNOUT, NOWDT
+#fuses NOPBADEN, /*NOMCLR,*/ STVREN, NOLVP, NODEBUG 
+#USE DELAY (clock=16000000)
+
+int16 AUX=0;
+int16 conteo;
+int16 contador200=0;
+int16 contador400=0;
+int16 contador700=0;
+int16 contador1000=0;
+#int_timer0
+void timer_0()
+{ 
+    set_timer0(15536);
+    AUX++;
+    contador700++;
+}
+void main(void) {
+    setup_oscillator(OSC_16MHZ);
+    //INTERRUPCION TIMER0
+    setup_timer_0(RTCC_INTERNAL | RTCC_DIV_8);
+    set_timer0(15536);
+    enable_interrupts(int_timer0);
+    enable_interrupts(global);
+    //PUERTOS DE LOS CONTADORES
+   
+    output_a(0x0);   
+    output_b(0x0);   
+    output_c(0x0);  
+    output_d(0x0);
+    
+    while (TRUE) {
+    //contador 1 (200ms)
+    if(AUX==2){
+    for(conteo=32;conteo>=1;conteo/=2)
+        {
+            output_a(conteo);
+        }
+        contador200++;
+        AUX=0;
+    }
+   
+    //contador 2 (400ms)
+    if(contador200==2)
+    {
+      for(conteo=32;conteo>=1;conteo/=2)
+        {
+            output_b(conteo);          
+        }
+        contador400++; 
+    }
+      //contador 3  (700ms)
+       if(contador700==3){
+       for(conteo=32;conteo>=1;conteo/=2)
+        {
+            output_d(conteo);
+        }
+        contador700=0;
+      }
+       //contador 4(1000ms)
+       if(contador200==5){
+        for(conteo=32;conteo>=1;conteo/=2)
+        {
+            output_c(conteo);
+        }
+       }
+    }
+}

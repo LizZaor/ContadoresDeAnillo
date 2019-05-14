@@ -1,0 +1,76 @@
+#include <18F4620.h>
+#fuses HS, NOFCMEN, NOIESO, PUT, NOBROWNOUT, NOWDT
+#fuses NOPBADEN, STVREN, NOLVP, NODEBUG, MCLR
+#USE DELAY (clock=16000000)
+#int_timer0
+int16 AUX=0;
+int16 conteo;
+int16 contador=0;
+void timer_0()
+{
+    AUX++;    
+    if(AUX==2){
+     //contador 1 (200ms)
+        for(conteo=32;conteo>=1;conteo/=2)
+        {
+            output_a(conteo);
+            delay_ms(200);
+        } 
+    contador++; 
+    if(contador>10){
+    contador=0;
+    }
+    AUX=0;
+    }
+    set_timer0(206);
+}
+void main(void) {
+    setup_timer_0(RTCC_INTERNAL | RTCC_DIV_2);
+    set_timer0(206);
+    enable_interrupts(int_timer0);
+    enable_interrupts(global);
+    
+    set_tris_d(0xfc);
+    output_a(0xfc);
+    output_b(0xfc);
+    output_c(0xfc);
+    output_d(0xfc);
+
+   
+    while (TRUE) {
+    //contador 1 (200ms)
+    if(contador==2)
+    {
+        for(conteo=32;conteo>=1;conteo/=2)
+        {
+            output_a(conteo);
+            delay_ms(200);
+        }  
+    }
+    //contador 2 (400ms)
+    if(contador==4)
+    {
+      for(conteo=32;conteo>=1;conteo/=2)
+        {
+            output_b(conteo);
+            delay_ms(400);
+        }
+    }
+      //contador 3  (700ms)
+      if(contador==7){
+       for(conteo=32;conteo>=1;conteo/=2)
+        {
+            output_d(conteo);
+            delay_ms(700);
+        }
+      }
+       //contador 4(1000ms)
+       if(contador==10){
+        for(conteo=32;conteo>=1;conteo/=2)
+        {
+            output_c(conteo);
+            delay_ms(1000);
+        }
+       }
+    }
+}

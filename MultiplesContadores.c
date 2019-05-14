@@ -1,0 +1,80 @@
+#include <18F4620.h>
+#include <stdio.h>
+#include <stdlib.h>
+#fuses XT, NOMCLR
+#USE DELAY (clock=16000000)
+
+int conteo1=1;
+int conteo2=1;
+int conteo3=1;
+int conteo4=1;
+int contador200=0;
+int contador400=0;
+int contador700=0;
+int contador1000=0;
+#int_timer0
+void timer_0()
+{ 
+    set_timer0(15536);
+    contador200++;
+    contador400++;
+    contador700++;
+    contador1000++;
+}
+void main(void) {
+    //INTERRUPCION TIMER0
+    setup_timer_0(RTCC_INTERNAL | RTCC_DIV_8);
+    set_timer0(15536);
+    enable_interrupts(int_timer0);
+    enable_interrupts(global);
+    //PUERTOS DE LOS CONTADORES
+   
+    output_a(0x0);   
+    output_b(0x0);   
+    output_c(0x0);  
+    output_d(0x0);
+    
+    while (TRUE) {
+    //contador 1 (200ms)
+    if(contador200==2){
+         conteo1*=2;   
+         contador200=0;
+      }  
+     if(conteo1==64){
+      conteo1=1;
+     }
+     output_a(conteo1);
+     
+    //contador 2 (400ms)
+    if(contador400==5){
+         conteo2*=2;   
+         contador400=0;
+      }
+   
+     if(conteo2==64){
+      conteo2=1;
+     }
+     output_b(conteo2);
+    
+      //contador 3  (700ms)
+       if(contador700==7){
+         conteo3*=2;   
+         contador700= 0;
+      }
+     if(conteo3 ==64){
+      conteo3=1;
+     }
+     output_c(conteo3);
+     
+       //contador 4(1000ms)
+       if(contador1000==5){
+         conteo4*=2;   
+         contador1000=0;
+      }  
+     if(conteo4==64){
+      conteo4=1;
+     }     
+     output_d(conteo4);    
+     
+    }
+}

@@ -1,0 +1,21 @@
+[PROJECT]
+Target=MultiplesContadores.hex
+Processor_Text=PIC18F4620
+CCSVersion=5.012
+Compiler=PCH
+[Target Data]
+FileList=MultiplesContadores.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[MultiplesContadores.c]
+Type=4
+[mru-list]
+1=MultiplesContadores.c
+[Opened Files]
+1=MultiplesContadores.c
+2=..\..\Nueva carpeta\Timer.c
+3=
+4=
+[Units]
+Count=1
+1=MultiplesContadores (main)
