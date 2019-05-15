@@ -1,6 +1,6 @@
-CCS PCH C Compiler, Version 5.012, 41559               13-may.-19 21:37
+CCS PCH C Compiler, Version 5.012, 41559               14-may.-19 22:07
 
-               Filename:   C:\Users\L-L-Z\OneDrive\Documentos\Sistemas Embebidos Alumnos\Proyectos\MultiplesContadores.lst
+               Filename:   C:\Users\L-L-Z\OneDrive\Documentos\Sistemas Embebidos Alumnos\ContadoresDeAnillo\MultiplesContadores.lst
 
                ROM used:   358 bytes (1%)
                            Largest free fragment is 65174
@@ -2542,9 +2542,9 @@ CCS PCH C Compiler, Version 5.012, 41559               13-may.-19 21:37
 0011C:  CLRF   21
 ....................       } 
 ....................     
-....................      if(conteo2==64){ 
+....................      if(conteo2==256){ 
 0011E:  MOVF   1D,W
-00120:  SUBLW  40
+00120:  SUBLW  00
 00122:  BNZ   0128
 ....................       conteo2=1; 
 00124:  MOVLW  01
@@ -2565,9 +2565,9 @@ CCS PCH C Compiler, Version 5.012, 41559               13-may.-19 21:37
 ....................          contador700= 0; 
 00138:  CLRF   22
 ....................       } 
-....................      if(conteo3 ==64){ 
+....................      if(conteo3 ==256){ 
 0013A:  MOVF   1E,W
-0013C:  SUBLW  40
+0013C:  SUBLW  00
 0013E:  BNZ   0144
 ....................       conteo3=1; 
 00140:  MOVLW  01
@@ -2588,9 +2588,9 @@ CCS PCH C Compiler, Version 5.012, 41559               13-may.-19 21:37
 ....................          contador1000=0; 
 00154:  CLRF   23
 ....................       }   
-....................      if(conteo4==64){ 
+....................      if(conteo4==256){ 
 00156:  MOVF   1F,W
-00158:  SUBLW  40
+00158:  SUBLW  00
 0015A:  BNZ   0160
 ....................       conteo4=1; 
 0015C:  MOVLW  01

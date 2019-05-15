@@ -51,7 +51,7 @@ void main(void) {
          contador400=0;
       }
    
-     if(conteo2==64){
+     if(conteo2==256){
       conteo2=1;
      }
      output_b(conteo2);
@@ -61,7 +61,7 @@ void main(void) {
          conteo3*=2;   
          contador700= 0;
       }
-     if(conteo3 ==64){
+     if(conteo3 ==256){
       conteo3=1;
      }
      output_c(conteo3);
@@ -71,7 +71,7 @@ void main(void) {
          conteo4*=2;   
          contador1000=0;
       }  
-     if(conteo4==64){
+     if(conteo4==256){
       conteo4=1;
      }     
      output_d(conteo4);    

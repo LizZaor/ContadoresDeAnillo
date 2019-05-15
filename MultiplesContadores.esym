@@ -1,8 +1,7 @@
-D G "labs" 6 249 "abs"
-D G "__PCH__" 0 82 ""5.012""
-D G "__DEVICE__" 0 82 "4620"
-D G "__DATE__" 0 82 ""13-may.-19""
-D G "__TIME__" 0 82 ""21:37:31"" "Standard Header file for the PIC18F4620 device ////////////////"
+D G "__PCH__" 0 0 ""5.012""
+D G "__DEVICE__" 0 0 ""
+D G "__DATE__" 0 0 ""14-may.-19""
+D G "__TIME__" 0 0 ""22:07:01"" "Standard Header file for the PIC18F4620 device ////////////////"
 c L "set_tris_a" 1 3 6 "FUNCTION"
 v L "value" 1 43 "int8" `54 
 f B "set_tris_a" 1 43 "void(int8 value)" `53 
