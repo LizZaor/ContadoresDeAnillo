@@ -46,7 +46,7 @@ void main(void) {
      output_a(conteo1);
      
     //contador 2 (400ms)
-    if(contador400==5){
+    if(contador400==4){
          conteo2*=2;   
          contador400=0;
       }
@@ -67,7 +67,7 @@ void main(void) {
      output_c(conteo3);
      
        //contador 4(1000ms)
-       if(contador1000==5){
+       if(contador1000==10){
          conteo4*=2;   
          contador1000=0;
       }  
